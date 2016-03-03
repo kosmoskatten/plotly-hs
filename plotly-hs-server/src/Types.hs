@@ -5,9 +5,16 @@ module Types
   , Entry (..)
   , newContext
   , listEntries
+  , createEntry
+  , readEntry
   ) where
 
-import Control.Concurrent.STM (TVar, newTVarIO, readTVarIO)
+import Control.Concurrent.STM ( TVar
+                              , atomically
+                              , newTVarIO
+                              , readTVarIO
+                              , modifyTVar
+                              )
 import Data.Map.Lazy (Map)
 import Data.Text (Text)
 
@@ -27,7 +34,7 @@ data Entry = Entry
     { description_entry :: !Text
     , type_entry        :: !Type
     , link_entry        :: !Text
-    , plot              :: !Plot
+    , plot_entry        :: !Plot
     }
 
 -- | Create a new, empty, context.
@@ -38,3 +45,11 @@ newContext = Context <$> newTVarIO Map.empty
 listEntries :: Context -> IO [Entry]
 listEntries context = Map.elems <$> readTVarIO (plotMap context)
 
+createEntry :: Context -> PlotKey -> Entry -> IO ()
+createEntry context key entry =
+  atomically $ modifyTVar (plotMap context) (Map.insert key entry)
+
+readEntry :: Context -> PlotKey -> IO (Maybe Entry)
+readEntry context plotKey = do
+  plotMap' <- readTVarIO $ plotMap context
+  return $ Map.lookup plotKey plotMap'

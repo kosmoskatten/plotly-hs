@@ -18,6 +18,7 @@ import Data.Text (Text)
 data Registration = Registration
     { description_reg :: !Text
     , type_reg        :: !Type
+    , plot_reg        :: !Plot
     } deriving Show
 
 -- | Registry entry for a registered plot. Response from the server.
@@ -55,12 +56,14 @@ instance FromJSON Registration where
   parseJSON (Object o) =
     Registration <$> o .: "description"
                  <*> o .: "type"
+                 <*> o .: "plot"
   parseJSON invalid    = typeMismatch "Registration" invalid
 
 instance ToJSON Registration where
   toJSON Registration {..} =
     object [ "description" .= description_reg
            , "type"        .= type_reg
+           , "plot"        .= plot_reg
            ]
 
 -- Aeson instances for RegistryEntry.
