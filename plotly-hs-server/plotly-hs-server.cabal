@@ -17,7 +17,8 @@ cabal-version:       >=1.10
 
 executable plotly-hs-server
   main-is:             Main.hs
-  other-modules:       Types
+  other-modules:       Server
+                       Types
   -- other-extensions:    
   build-depends:       base >=4.8 && <4.9
                      , aeson

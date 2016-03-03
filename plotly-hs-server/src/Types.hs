@@ -4,9 +4,10 @@ module Types
   , Context (..)
   , Entry (..)
   , newContext
+  , listEntries
   ) where
 
-import Control.Concurrent.STM (TVar, newTVarIO)
+import Control.Concurrent.STM (TVar, newTVarIO, readTVarIO)
 import Data.Map.Lazy (Map)
 import Data.Text (Text)
 
@@ -32,3 +33,8 @@ data Entry = Entry
 -- | Create a new, empty, context.
 newContext :: IO Context
 newContext = Context <$> newTVarIO Map.empty
+
+-- | Get all the entries from the context.
+listEntries :: Context -> IO [Entry]
+listEntries context = Map.elems <$> readTVarIO (plotMap context)
+
