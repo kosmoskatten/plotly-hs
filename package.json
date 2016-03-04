@@ -1,0 +1,26 @@
+{
+  "name": "plotly-hs",
+  "version": "1.0.0",
+  "description": "Nothing yet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --content-base build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kosmoskatten/plotly-hs.git"
+  },
+  "keywords": [],
+  "author": "Patrik Sandahl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kosmoskatten/plotly-hs/issues"
+  },
+  "homepage": "https://github.com/kosmoskatten/plotly-hs#readme",
+  "devDependencies": {
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
