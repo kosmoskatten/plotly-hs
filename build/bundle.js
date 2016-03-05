@@ -80,8 +80,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./main.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./main.css");
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./w3.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./w3.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -99,7 +99,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: green;\n}\n", ""]);
+	exports.push([module.id, "/* W3.CSS 2.0 by Jan Egil and Borge Refsnes. Do not remove this line. */\r\n*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}\r\n/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */\r\nhtml{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}\r\narticle,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}\r\naudio,canvas,video{display:inline-block;vertical-align:baseline}\r\naudio:not([controls]){display:none;height:0}\r\n[hidden],template{display:none}\r\na{-webkit-tap-highlight-color:transparent;background-color:transparent}\r\na:active,a:hover{outline:0}\r\nabbr[title]{border-bottom:1px dotted}\r\nb,strong{font-weight:bold}dfn{font-style:italic}\r\nmark{background:#ff0;color:#000}small{font-size:80%}\r\nsub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}\r\nsup{top:-0.5em}sub{bottom:-0.25em}\r\nimg{border:0}svg:not(:root){overflow:hidden} figure{margin:1em 40px}\r\nhr{-moz-box-sizing:content-box;box-sizing:content-box}\r\ncode,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}\r\nbutton,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}\r\nbutton{overflow:visible}button,select{text-transform:none}\r\nbutton,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}\r\nbutton[disabled],html input[disabled]{cursor:default}\r\nbutton::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}\r\ninput[type=checkbox],input[type=radio]{padding:0}\r\ninput[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}\r\ninput[type=search]{box-sizing:content-box;-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box}\r\ninput[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}\r\nfieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}\r\nlegend{border:0;padding:0}pre,textarea{overflow:auto}optgroup{font-weight:bold}\r\n/* End extract from normalize.css */\r\nhtml,body{font-family:Verdana,sans-serif;font-size:15px;line-height:1.5}\r\nh1,h2,h3,h4,h5,h6,.w3-slim,.w3-wide{font-family:\"Segoe UI\",Arial,sans-serif}\r\nh1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}\r\n.w3-serif{font-family:\"Times New Roman\",Times,serif}\r\nh1,h2,h3,h4,h5,h6{font-weight:400;margin:10px 0}\r\n.w3-wide{letter-spacing:4px}\r\nh1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}\r\nhr{height:0;border:0;border-top:1px solid #eee;margin:20px 0}\r\nimg{margin-bottom:-5px}\r\na{color:inherit}\r\ntable{border-collapse:collapse;border-spacing:0;width:100%;display:table}\r\ntable,th,td{border:none}\r\n.w3-table-all{border:1px solid #ccc}\r\n.w3-bordered tr,.w3-table-all tr{border-bottom:1px solid #ddd}\r\n.w3-striped tbody tr:nth-child(even){background-color:#f1f1f1}\r\n.w3-table-all tr:nth-child(odd){background-color:#fff}\r\n.w3-table-all tr:nth-child(even){background-color:#f1f1f1}\r\n.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}\r\n.w3-centered tr th,.w3-centered tr td{text-align:center}\r\n.w3-table td,.w3-table th,.w3-table-all td,.w3-table-all th{padding:6px 8px;display:table-cell;text-align:left;vertical-align:top}\r\n.w3-table th:first-child,.w3-table td:first-child,.w3-table-all th:first-child,.w3-table-all td:first-child{padding-left:16px}\r\n.w3-btn,.w3-btn-block{border:none;display:inline-block;outline:0;padding:6px 16px;vertical-align:middle;overflow:hidden;text-decoration:none !important;color:#fff;background-color:#000;text-align:center;cursor:pointer;white-space:nowrap}\r\n.w3-btn.w3-disabled,.w3-btn-block.w3-disabled,.w3-btn-floating.w3-disabled,.w3-btn:disabled,.w3-btn-floating:disabled,.w3-btn-floating-large.w3-disabled,.w3-btn-floating-large:disabled{cursor:not-allowed;opacity:0.3}\r\n.w3-btn.w3-disabled *,.w3-btn-block.w3-disabled,.w3-btn-floating.w3-disabled *,.w3-btn:disabled *,.w3-btn-floating:disabled *{pointer-events:none}\r\n.w3-btn.w3-disabled:hover,.w3-btn-block.w3-disabled:hover,.w3-btn:disabled:hover,.w3-btn-floating.w3-disabled:hover,.w3-btn-floating:disabled:hover,\r\n.w3-btn-floating-large.w3-disabled:hover,.w3-btn-floating-large:disabled:hover{box-shadow:none}\r\n.w3-btn:hover,.w3-btn-block:hover,.w3-btn-floating:hover,.w3-btn-floating-large:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}\r\n.w3-btn-block{width:100%}\r\n.w3-btn-floating,.w3-btn-floating-large{display:inline-block;text-align:center;color:#fff;background-color:#000;position:relative;overflow:hidden;z-index:1;padding:0;border-radius:50%;cursor:pointer;font-size:24px}\r\n.w3-btn-floating{width:40px;height:40px;line-height:40px}\r\n.w3-btn-floating-large{width:56px;height:56px;line-height:56px}\r\n.w3-btn-group .w3-btn{float:left}\r\n.w3-btn.w3-ripple{position:relative}\r\n.w3-ripple:after{content:\"\";background:#90EE90;display:block;position:absolute;padding-top:300%;padding-left:350%;margin-left:-20px!important;margin-top:-120%;opacity:0;transition:all 0.8s}\r\n.w3-ripple:active:after{padding:0;margin:0;opacity:1;transition:0s}\r\n.w3-badge,.w3-tag,.w3-sign{background-color:#000;color:#fff;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;text-align:center}\r\n.w3-badge{border-radius:50%}\r\nul.w3-ul{list-style-type:none;padding:0;margin:0}\r\nul.w3-ul li{padding:6px 2px 6px 16px;border-bottom:1px solid #ddd}\r\nul.w3-ul li:last-child{border-bottom:none}\r\n.w3-image,.w3-tooltip,.w3-display-container{position:relative}\r\nimg.w3-image,.w3-image img{max-width:100%;height:auto}\r\n.w3-image .w3-title{position:absolute;bottom:8px;left:16px;color:#fff;font-size:20px}\r\n.w3-fluid{max-width:100%;height:auto}\r\n.w3-tooltip .w3-text{display:none}\r\n.w3-tooltip:hover .w3-text{display:inline-block}\r\n.w3-navbar {list-style-type:none;margin:0;padding:0;overflow:hidden}\r\n.w3-navbar li{float:left}.w3-navbar li a{display:block;padding:8px 16px}.w3-navbar li a:hover{color:#000;background-color:#ccc}\r\n.w3-navbar .w3-dropdown-hover,.w3-navbar .w3-dropdown-click{position:static}\r\n.w3-navbar .w3-dropdown-hover:hover,.w3-navbar .w3-dropdown-hover:first-child,.w3-navbar .w3-dropdown-click:hover{background-color:#ccc;color:#000}\r\n.w3-topnav{padding:8px 8px}\r\n.w3-navbar a,.w3-topnav a,.w3-sidenav a,.w3-dropnav a,.w3-dropdown-content a,.w3-accordion-content a{text-decoration:none !important}\r\n.w3-navbar ul.w3-right{list-style-type:none;}\r\n.w3-navbar.w3-collapse li.w3-opennav{display:none}\r\n.w3-topnav a{padding:0 8px;border-bottom:3px solid transparent}\r\n.w3-topnav a:hover{border-bottom:3px solid #fff}\r\n.w3-topnav .w3-dropdown-hover a{border-bottom:0}\r\n.w3-opennav,.w3-closenav{color:inherit}\r\n.w3-opennav:hover,.w3-closenav:hover{cursor:pointer;opacity:0.8}\r\n.w3-navbar a,.w3-topnav a,.w3-sidenav a,.w3-dropnav a,.w3-pagination li a,.w3-hoverable tbody tr,.w3-btn,.w3-btn-floating,.w3-btn-floating-large\r\n{-webkit-transition:all 0.3s ease;transition:all 0.3s ease}\r\n.w3-sidenav{height:100%;width:200px;background-color:#fff;position:fixed !important;z-index:1;overflow:auto}\r\n.w3-sidenav a{padding:4px 2px 4px 16px}\r\n.w3-sidenav a:hover{background-color:#ccc}\r\n.w3-sidenav a,.w3-dropnav a{display:block}\r\n.w3-sidenav .w3-dropdown-hover:hover,.w3-sidenav .w3-dropdown-hover:first-child,.w3-sidenav .w3-dropdown-click:hover{background-color:#ccc;color:#000}\r\n.w3-sidenav .w3-dropdown-hover,.w3-sidenav .w3-dropdown-click {width:100%}.w3-sidenav .w3-dropdown-hover .w3-dropdown-content,.w3-sidenav .w3-dropdown-click .w3-dropdown-content{min-width:100%}\r\n.w3-main{transition:margin-left .4s}\r\n.w3-dropnav {background-color:#fff}\r\n.w3-dropnav a:hover{text-decoration:underline !important}\r\n.w3-modal{z-index:1;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}\r\n.w3-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}.w3-closebtn{text-decoration:none;float:right;font-size:24px;font-weight:bold;color:inherit}\r\n.w3-closebtn:hover,.w3-closebtn:focus{color:#000;text-decoration:none;cursor:pointer}\r\n.w3-pagination{display:inline-block;padding:0;margin:0}\r\n.w3-pagination li{display:inline}\r\n.w3-pagination li a{text-decoration:none;color:#000;float:left;padding:8px 16px}\r\n.w3-pagination li a:hover,.w3-pagination li a:focus{background-color:#ccc}\r\n.w3-input-group,.w3-group{margin-top:24px;margin-bottom:24px}\r\n.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #808080;width:100%}\r\n.w3-label{color:#009688}\r\n.w3-input:not(:valid)~.w3-validate{color:#f44336}\r\n.w3-select{padding:4px 0;width:100%;color:#000;border:1px solid transparent;border-bottom:1px solid #009688}\r\n.w3-select select:focus{color:#000;border:1px solid #009688}.w3-select option[disabled]{color:#009688}\r\n.w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer}\r\n.w3-dropdown-hover:hover .w3-dropdown-content{display:block;z-index:1}\r\n.w3-dropdown-content{cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0}\r\n.w3-dropdown-content a{padding:6px 16px;display:block}\r\n.w3-dropdown-content a:hover{background-color:#ccc}\r\n.w3-accordion {width:100%;cursor:pointer}\r\n.w3-accordion-content{cursor:auto;display:none;position:relative;width:100%;margin:0;padding:0}\r\n.w3-accordion-content a{padding:6px 16px;display:block}\r\n.w3-accordion-content a:hover{background-color:#ccc}\r\n.w3-progress-container{width:100%;height:1.5em;position:relative;background-color:#f1f1f1}\r\n.w3-progressbar{background-color:#757575;height:100%;position:absolute;line-height:inherit}\r\ninput[type=checkbox].w3-check,input[type=radio].w3-radio{width:24px;height:24px;position:relative;top:6px}\r\ninput[type=checkbox].w3-check:checked+.w3-validate,input[type=radio].w3-radio:checked+.w3-validate{color:#009688} \r\ninput[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:disabled+.w3-validate{color:#aaa}\r\n.w3-responsive{overflow-x:auto}\r\n.w3-container:after,.w3-row:after,.w3-row-padding:after,.w3-topnav:after,.w3-clear:after,.w3-btn-group:before,.w3-btn-group:after{content:\"\";display:table;clear:both}\r\n.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-quarter{float:left;width:100%}\r\n.w3-col.s1{width:8.33333%}\r\n.w3-col.s2{width:16.66666%}\r\n.w3-col.s3{width:24.99999%}\r\n.w3-col.s4{width:33.33333%}\r\n.w3-col.s5{width:41.66666%}\r\n.w3-col.s6{width:49.99999%}\r\n.w3-col.s7{width:58.33333%}\r\n.w3-col.s8{width:66.66666%}\r\n.w3-col.s9{width:74.99999%}\r\n.w3-col.s10{width:83.33333%}\r\n.w3-col.s11{width:91.66666%}\r\n.w3-col.s12,.w3-half,.w3-third,.w3-twothird,.w3-quarter{width:99.99999%}\r\n@media only screen and (min-width:601px){\r\n.w3-col.m1{width:8.33333%}\r\n.w3-col.m2{width:16.66666%}\r\n.w3-col.m3,.w3-quarter{width:24.99999%}\r\n.w3-col.m4,.w3-third{width:33.33333%}\r\n.w3-col.m5{width:41.66666%}\r\n.w3-col.m6,.w3-half{width:49.99999%}\r\n.w3-col.m7{width:58.33333%}\r\n.w3-col.m8,.w3-twothird{width:66.66666%}\r\n.w3-col.m9{width:74.99999%}\r\n.w3-col.m10{width:83.33333%}\r\n.w3-col.m11{width:91.66666%}\r\n.w3-col.m12{width:99.99999%}}\r\n@media only screen and (min-width:993px){\r\n.w3-col.l1{width:8.33333%}\r\n.w3-col.l2{width:16.66666%}\r\n.w3-col.l3,.w3-quarter{width:24.99999%}\r\n.w3-col.l4,.w3-third{width:33.33333%}\r\n.w3-col.l5{width:41.66666%}\r\n.w3-col.l6,.w3-half{width:49.99999%}\r\n.w3-col.l7{width:58.33333%}\r\n.w3-col.l8,.w3-twothird{width:66.66666%}\r\n.w3-col.l9{width:74.99999%}\r\n.w3-col.l10{width:83.33333%}\r\n.w3-col.l11{width:91.66666%}\r\n.w3-col.l12{width:99.99999%}}\r\n.w3-content{max-width:980px;margin:auto}\r\n.w3-rest{overflow:hidden}\r\n.w3-hide{display:none !important}.w3-show-block,.w3-show{display:block !important}.w3-show-inline-block{display:inline-block !important}\r\n@media (max-width:601px){.w3-modal-content{margin:50px 10px 10px 10px;width:auto !important}}\r\n@media (max-width:768px){.w3-modal-content{width:500px}}\r\n@media (min-width:992px){.w3-modal-content{width:900px}}\r\n@media screen and (max-width:601px){.w3-topnav a{display:block}.w3-navbar li{float:none}.w3-navbar div.w3-right,.w3-navbar ul.w3-right{float:none !important;margin:0;padding:0}}\t\r\n@media screen and (max-width:601px){.w3-topnav .w3-dropdown-hover .w3-dropdown-content,.w3-navbar .w3-dropdown-click .w3-dropdown-content,.w3-navbar .w3-dropdown-hover .w3-dropdown-content{position:relative}}\t\r\n@media screen and (max-width:601px){.w3-topnav,.w3-navbar{text-align:center}}\r\n@media (max-width:601px){.w3-hide-small{display:none !important}}\r\n@media (max-width:991px) and (min-width:601px){.w3-hide-medium{display:none !important}}\r\n@media (min-width:992px){.w3-hide-large{display:none !important}}\r\n@media screen and (max-width:991px){.w3-sidenav.w3-collapse{display:none}.w3-main{margin-left:0 !important}}\r\n@media screen and (min-width:991px){.w3-sidenav.w3-collapse{display:block !important}}\r\n.w3-top,.w3-bottom{position:fixed;width:100%;z-index:1}.w3-top{top:0}.w3-bottom{bottom:0}\r\n.w3-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2}\r\n.w3-left{float:left !important}.w3-right{float:right !important}\r\n.w3-tiny{font-size:10px !important}.w3-small{font-size:12px !important}\r\n.w3-medium{font-size:15px !important}\r\n.w3-large{font-size:18px !important}\r\n.w3-xlarge{font-size:24px !important}\r\n.w3-xxlarge{font-size:36px !important}\r\n.w3-xxxlarge{font-size:48px !important}\r\n.w3-jumbo{font-size:64px !important}\r\n.w3-vertical{word-break:break-all;line-height:1;text-align:center;width:0.6em}\r\n.w3-left-align{text-align:left !important}.w3-right-align{text-align:right !important}\r\n.w3-justify{text-align:justify !important}\r\n.w3-center{text-align:center !important}\r\n.w3-display-topleft{position:absolute;left:0;top:0}\r\n.w3-display-topright{position:absolute;right:0;top:0}\r\n.w3-display-bottomleft{position:absolute;left:0;bottom:0}\r\n.w3-display-bottomright{position:absolute;right:0;bottom:0}\r\n.w3-display-middle{position:absolute;left:0;top:50%;width:100%;text-align:center}\r\n.w3-circle{border-radius:50% !important}\r\n.w3-round-small{border-radius:2px !important}.w3-round,.w3-round-medium{border-radius:4px !important}\r\n.w3-round-large{border-radius:8px !important}.w3-round-xlarge{border-radius:16px !important}\r\n.w3-round-xxlarge{border-radius:32px !important}.w3-round-jumbo{border-radius:64px !important}\r\n.w3-border-0{border:0 !important}\r\n.w3-border{border:1px solid #ccc !important}\r\n.w3-border-top{border-top:1px solid #ccc !important}.w3-border-bottom{border-bottom:1px solid #ccc !important}\r\n.w3-border-left{border-left:1px solid #ccc !important}.w3-border-right{border-right:1px solid #ccc !important}\r\n.w3-margin-0{margin:0 !important}\r\n.w3-margin-2{margin:2px !important}\r\n.w3-margin-4{margin:4px !important}\r\n.w3-margin-8{margin:8px !important}\r\n.w3-margin-12{margin:12px !important}\r\n.w3-margin-16{margin:16px !important}\r\n.w3-margin-24{margin:24px !important}\r\n.w3-margin-32{margin:32px !important}\r\n.w3-margin-64{margin:64px !important}\r\n.w3-margin{margin:16px !important}\r\n.w3-margin-top{margin-top:16px !important}.w3-margin-bottom{margin-bottom:16px !important}\r\n.w3-margin-left{margin-left:16px !important}.w3-margin-right{margin-right:16px !important}\r\n.w3-padding-tiny{padding:2px 4px !important}\r\n.w3-padding-small{padding:4px 8px !important}\r\n.w3-padding-medium,.w3-padding,.w3-form{padding:8px 16px !important}\r\n.w3-padding-large{padding:12px 24px !important}\r\n.w3-padding-xlarge{padding:16px 32px !important}\r\n.w3-padding-xxlarge{padding:24px 48px !important}\r\n.w3-padding-jumbo{padding:32px 64px !important}\r\n.w3-padding-0{padding:0 !important}\r\n.w3-padding-4{padding-top:4px !important;padding-bottom:4px !important}\r\n.w3-padding-8{padding-top:8px !important;padding-bottom:8px !important}\r\n.w3-padding-16{padding-top:16px !important;padding-bottom:16px !important}\r\n.w3-padding-24{padding-top:24px !important;padding-bottom:24px !important}\r\n.w3-padding-32{padding-top:32px !important;padding-bottom:32px !important}\r\n.w3-padding-48{padding-top:48px !important;padding-bottom:48px !important}\r\n.w3-padding-64{padding-top:64px !important;padding-bottom:64px !important}\r\n.w3-padding-top{padding-top:8px !important}.w3-padding-bottom{padding-bottom:8px !important}\r\n.w3-padding-left{padding-left:16px !important}.w3-padding-right{padding-right:16px !important}\r\n.w3-topbar{border-top:6px solid #ccc !important}.w3-bottombar{border-bottom:6px solid #ccc !important}\r\n.w3-leftbar{border-left:6px solid #ccc !important}.w3-rightbar{border-right:6px solid #ccc !important}\r\n.w3-border-red{border-color:#ff6060 !important}.w3-border-yellow{border-color:#daa520 !important}\r\n.w3-border-green{border-color:#66aa66 !important}.w3-border-blue{border-color:#1E90FF !important}\r\n.w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col{padding:0 8px}\r\n.w3-spin{animation:w3-spin 2s infinite linear;-webkit-animation:w3-spin 2s infinite linear}\r\n@-webkit-keyframes w3-spin{\r\n0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}\r\n100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}\r\n@keyframes w3-spin{\r\n0%{-webkit-transform:rotate(0deg);transform: rotate(0deg)}\r\n100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}\r\n.w3-container{padding:0.01em 16px}\r\n.w3-example{background-color:#f1f1f1;padding:0.01em 16px}\r\n.w3-section,.w3-paragraph{margin-top:16px;margin-bottom:16px}\r\n.w3-code{font-family:Consolas,\"courier new\";font-size:16px;line-height:1.4;width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #009688;word-wrap:break-word}\r\n.w3-example,.w3-code,.w3-reference{margin:20px 0}\r\n.w3-card{border:1px solid #ccc}\r\n.w3-card-2,.w3-example{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important}\r\n.w3-card-4{box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important}\r\n.w3-card-8{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important}\r\n.w3-card-12{box-shadow:0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19) !important}\r\n.w3-card-16{box-shadow:0 16px 24px 0 rgba(0,0,0,0.22),0 25px 55px 0 rgba(0,0,0,0.21) !important}\r\n.w3-card-24{box-shadow:0 24px 24px 0 rgba(0,0,0,0.2),0 40px 77px 0 rgba(0,0,0,0.22) !important}\r\n.w3-animate-fading{-webkit-animation:fading 10s infinite;animation:fading 10s infinite}\r\n@-webkit-keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}\r\n@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}\r\n.w3-animate-opacity{-webkit-animation:opac 4s;animation:opac 4s}\r\n@-webkit-keyframes opac{from{opacity:0} to{opacity:1}}\r\n@keyframes opac{from{opacity:0} to{opacity:1}}\r\n.w3-animate-top{position:relative;-webkit-animation:animatetop 0.4s;animation:animatetop 0.4s}\r\n@-webkit-keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}\r\n@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}\r\n.w3-animate-left{position:relative;-webkit-animation:animateleft 0.4s;animation:animateleft 0.4s}\r\n@-webkit-keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}\r\n@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}\r\n.w3-animate-right{position:relative;-webkit-animation:animateright 0.4s;animation:animateright 0.4s}\r\n@-webkit-keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}\r\n@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}\r\n.w3-animate-bottom{position:relative;-webkit-animation:animatebottom 0.4s;animation:animatebottom 0.4s}\r\n@-webkit-keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0px;opacity:1}}\r\n@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}\r\n.w3-animate-zoom {-webkit-animation:animatezoom 0.6s;animation:animatezoom 0.6s}\r\n@-webkit-keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}\r\n@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}\r\n.w3-animate-input{-webkit-transition:width 0.4s ease-in-out;transition:width 0.4s ease-in-out}.w3-animate-input:focus{width:100% !important}\r\n.w3-pale-red,.w3-hover-pale-red:hover{color:#000 !important;background-color:#ffe7e7 !important}.w3-pale-green,.w3-hover-pale-green:hover{color:#000 !important;background-color:#e7ffe7 !important}\r\n.w3-pale-yellow,.w3-hover-pale-yellow:hover{color:#000 !important;background-color:#ffffd7 !important}.w3-pale-blue,.w3-hover-pale-blue:hover{color:#000 !important;background-color:#e7ffff !important}\r\n.w3-text-amber{color:#ffc107 !important}.w3-amber,.w3-hover-amber:hover{color:#000 !important;background-color:#ffc107 !important}\r\n.w3-text-aqua{color:#00ffff !important}.w3-aqua,.w3-hover-aqua:hover{color:#000 !important;background-color:#00ffff !important}\r\n.w3-text-blue{color:#2196F3 !important}.w3-blue,.w3-hover-blue:hover{color:#fff !important;background-color:#2196F3 !important}\r\n.w3-text-light-blue{color:#87CEEB !important}.w3-light-blue,.w3-hover-light-blue:hover{color:#000 !important;background-color:#87CEEB !important}\r\n.w3-text-brown{color:#795548 !important}.w3-brown,.w3-hover-brown:hover{color:#fff !important;background-color:#795548 !important}\r\n.w3-text-cyan{color:#00bcd4 !important}.w3-cyan,.w3-hover-cyan:hover{color:#000 !important;background-color:#00bcd4 !important}\r\n.w3-text-blue-grey{color:#607d8b !important}.w3-blue-grey,.w3-hover-blue-grey:hover{color:#fff !important;background-color:#607d8b !important}\r\n.w3-text-green{color:#4CAF50 !important}.w3-green,.w3-hover-green:hover{color:#fff !important;background-color:#4CAF50 !important}\r\n.w3-text-light-green{color:#8bc34a !important}.w3-light-green,.w3-hover-light-green:hover{color:#000 !important;background-color:#8bc34a !important}\r\n.w3-text-indigo{color:#3f51b5 !important}.w3-indigo,.w3-hover-indigo:hover{color:#fff !important;background-color:#3f51b5 !important}\r\n.w3-text-khaki{color:#b4aa50 !important}.w3-khaki,.w3-hover-khaki:hover{color:#000 !important;background-color:#f0e68c !important}\r\n.w3-text-lime{color:#cddc39 !important}.w3-lime,.w3-hover-lime:hover{color:#000 !important;background-color:#cddc39 !important}\r\n.w3-text-orange{color:#ff9800 !important}.w3-orange,.w3-hover-orange:hover{color:#000 !important;background-color:#ff9800 !important}\r\n.w3-text-deep-orange{color:#ff5722 !important}.w3-deep-orange,.w3-hover-deep-orange:hover{color:#fff !important;background-color:#ff5722 !important}\r\n.w3-text-pink{color:#e91e63 !important}.w3-pink,.w3-hover-pink:hover{color:#fff !important;background-color:#e91e63 !important}\r\n.w3-text-purple{color:#9c27b0 !important}.w3-purple,.w3-hover-purple:hover{color:#fff !important;background-color:#9c27b0 !important}\r\n.w3-text-deep-purple{color:#673ab7 !important}.w3-deep-purple,.w3-hover-deep-purple:hover{color:#fff !important;background-color:#673ab7 !important}\r\n.w3-text-red{color:#f44336 !important}.w3-red,.w3-hover-red:hover{color:#fff !important;background-color:#f44336 !important}\r\n.w3-text-sand{color:#fdf5e6 !important}.w3-sand,.w3-hover-sand:hover{color:#000 !important;background-color:#fdf5e6 !important}\r\n.w3-text-teal{color:#009688 !important}.w3-teal,.w3-hover-teal:hover{color:#fff !important;background-color:#009688 !important}\r\n.w3-text-yellow{color:#d2be0e !important}.w3-yellow,.w3-hover-yellow:hover{color:#000 !important;background-color:#ffeb3b !important}\r\n.w3-text-white{color:#fff !important}.w3-white,.w3-hover-white:hover{color:#000 !important;background-color:#fff !important}\r\n.w3-text-black{color:#000 !important}.w3-black,.w3-hover-black:hover{color:#fff !important;background-color:#000 !important}\r\n.w3-text-grey{color:#757575 !important}.w3-grey,.w3-hover-grey:hover{color:#000 !important;background-color:#9e9e9e !important}\r\n.w3-text-light-grey{color:#f1f1f1 !important}.w3-light-grey,.w3-hover-light-grey:hover{color:#000 !important;background-color:#f1f1f1 !important}\r\n.w3-text-dark-grey{color:#3a3a3a !important}.w3-dark-grey,.w3-hover-dark-grey:hover{color:#fff !important;background-color:#616161 !important}\r\n.w3-opacity,.w3-hover-opacity:hover{opacity:0.60}.w3-text-shadow{text-shadow:1px 1px 0 #444}.w3-text-shadow-white{text-shadow:1px 1px 0 #ddd}", ""]);
 
 	// exports
 
@@ -20031,6 +20031,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _PlotSelector = __webpack_require__(164);
+
+	var _PlotSelector2 = _interopRequireDefault(_PlotSelector);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20051,11 +20055,15 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Hello React'
-	      );
+	      return _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) });
+	    }
+
+	    // Callback from the PlotSelector with a link to the selected plot.
+
+	  }, {
+	    key: 'addPlot',
+	    value: function addPlot(link) {
+	      console.log("Got link: " + link);
 	    }
 	  }]);
 
@@ -20063,6 +20071,151 @@
 	}(_react2.default.Component);
 
 	exports.default = App;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/*
+	 * The PlotSelector displays a list of available plots and let the user
+	 * add one of those for display.
+	 */
+
+	var PlotSelector = function (_React$Component) {
+	  _inherits(PlotSelector, _React$Component);
+
+	  function PlotSelector(props) {
+	    _classCallCheck(this, PlotSelector);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlotSelector).call(this, props));
+
+	    _this.state = { plots: [] };
+	    return _this;
+	  }
+
+	  _createClass(PlotSelector, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      // Force an update as soon as the selector has been mounted.
+	      this.handleUpdate();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'w3-container' },
+	        _react2.default.createElement(
+	          'table',
+	          { className: 'w3-table w3-striped' },
+	          _react2.default.createElement(
+	            'thead',
+	            null,
+	            _react2.default.createElement(
+	              'tr',
+	              { className: 'w3-blue' },
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Plot Description'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Type'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Add It!'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'tbody',
+	            null,
+	            this.state.plots.map(function (entry, i) {
+	              return _react2.default.createElement(
+	                'tr',
+	                { key: i },
+	                _react2.default.createElement(
+	                  'td',
+	                  null,
+	                  entry.description
+	                ),
+	                _react2.default.createElement(
+	                  'td',
+	                  null,
+	                  entry.type
+	                ),
+	                _react2.default.createElement(
+	                  'td',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { className: 'w3-btn-floating w3-blue',
+	                      onClick: _this2.handleAdd.bind(_this2, entry.link) },
+	                    '+'
+	                  )
+	                )
+	              );
+	            })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'w3-btn-block w3-light-grey',
+	            onClick: this.handleUpdate.bind(this) },
+	          'Update plot list'
+	        )
+	      );
+	    }
+
+	    // Update the state with a new plot list from the server.
+
+	  }, {
+	    key: 'handleUpdate',
+	    value: function handleUpdate() {
+	      console.log('Update clicked');
+	      this.setState({ plots: [{ description: 'Dummy plot no 1', type: 'pie', link: '/foo/123' }, { description: 'Dummy plot no 2', type: 'pie', link: '/foo/456' }, { description: 'Dummy plot no 3', type: 'chart', link: '/foo/789' }] });
+	    }
+
+	    // Handle a new link is selected for adding.
+
+	  }, {
+	    key: 'handleAdd',
+	    value: function handleAdd(link) {
+	      console.log('foo: ' + link);
+	      this.props.addPlot(link);
+	    }
+	  }]);
+
+	  return PlotSelector;
+	}(_react2.default.Component);
+
+	exports.default = PlotSelector;
 
 /***/ }
 /******/ ]);

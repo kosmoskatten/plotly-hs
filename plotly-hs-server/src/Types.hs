@@ -27,7 +27,9 @@ type PlotMap = Map PlotKey Entry
 
 -- | Server context with the map of all plots.
 data Context = Context
-    { plotMap :: TVar PlotMap }
+    { siteDir :: !FilePath
+    , plotMap :: TVar PlotMap
+    }
 
 -- | An entry for one plot.
 data Entry = Entry
@@ -37,9 +39,9 @@ data Entry = Entry
     , plot_entry        :: !Plot
     }
 
--- | Create a new, empty, context.
-newContext :: IO Context
-newContext = Context <$> newTVarIO Map.empty
+-- | Create a new context, with the given site dir and an empty plot map.
+newContext :: FilePath -> IO Context
+newContext dir = Context dir <$> newTVarIO Map.empty
 
 -- | Get all the entries from the context.
 listEntries :: Context -> IO [Entry]

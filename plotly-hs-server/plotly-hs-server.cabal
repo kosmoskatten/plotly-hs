@@ -25,6 +25,7 @@ executable plotly-hs-server
                      , bytestring
                      , containers
                      , hive
+                     , options
                      , plotly-hs-lib
                      , stm
                      , text

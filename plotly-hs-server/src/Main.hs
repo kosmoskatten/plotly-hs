@@ -9,5 +9,5 @@ import Types (newContext)
 
 main :: IO ()
 main = do
-  context <- newContext
+  context <- newContext "./build"
   hive defaultHiveConfig $ server context

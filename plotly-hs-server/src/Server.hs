@@ -10,7 +10,7 @@ import Data.UUID.V4 (nextRandom)
 import Network.Hive
 
 import Plotly.JSON (RegistryEntry (..), Registration (..))
-import Types ( Context
+import Types ( Context (..)
              , Entry (..)
              , listEntries
              , createEntry
@@ -19,12 +19,24 @@ import Types ( Context
 
 server :: Context -> Hive ()
 server context = do
+  -- Redirect to index.html if accessing the service root.
+  match GET <!> None
+        ==> redirectTo "index.html"
+
+  -- List the already registered plots.
   match GET </> "rest" </> "plot" <!> None
         ==> listPlots context
+
+  -- Read the specified plot.
   match GET </> "rest" </> "plot" </:> "plotKey" <!> None
         ==> readPlot context
+
+  -- Create a new plot given the specified registration details.
   match POST </> "rest" </> "plot" <!> None
         ==> (createPlot context =<< bodyJSON)
+
+  -- Fall back http case, try serving a static file.
+  matchAll ==> serveDirectory (siteDir context)
 
 listPlots :: Context -> Handler HandlerResponse
 listPlots context = do
