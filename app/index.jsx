@@ -1,4 +1,5 @@
 import './w3.css';
+import './app.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

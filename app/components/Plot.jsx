@@ -5,6 +5,7 @@ export default class Plot extends React.Component {
     super(props);
   }
 
+  // Initial rendering of Plotly stuff.
   componentDidMount() {
     console.log("mount");
     var data=[{
@@ -24,12 +25,22 @@ export default class Plot extends React.Component {
     return (
         <div className='w3-card-12 w3-margin' style={{width:800}}>
           <header className='w3-container w3-blue w3-right-align'>
-            ✖
+            <span onClick={this.handleClose.bind(this, this.props.entry)}
+                  className="clickable">
+               ✖
+            </span>
           </header>
           <div id={this.props.plotId}
                className='w3-container' style={{height:600}}>
           </div>
         </div>
     );
+  }
+
+  // Event handler when the 'cross' has been clicked.
+  handleClose(entry) {
+    console.log('handleClose: ' + entry.link);
+    // Propagate the event to the PlotGrid.
+    this.props.onClose(entry.link);
   }
 }

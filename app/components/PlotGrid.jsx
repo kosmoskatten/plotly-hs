@@ -16,9 +16,15 @@ export default class PlotGrid extends React.Component {
           {this.props.plots.map((entry, i) => {
             return <Plot key={i}
                     plotId={'p' + i.toString()}
+                    onClose={this.onClose}
                     entry={entry} />
           })}
         </div>
     );
+  }
+
+  // A plot card has requested to close.
+  onClose(link) {
+    console.log('PlotGrid.onClose: ' + link);
   }
 };
