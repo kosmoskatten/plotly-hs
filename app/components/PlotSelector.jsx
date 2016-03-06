@@ -18,7 +18,7 @@ export default class PlotSelector extends React.Component {
   render() {
     // Render the PlotSelector.
     return (
-      <div className='w3-container'>
+      <div className='w3-container w3-col m4 l4'>
         <table className='w3-table w3-striped'>
           <thead>
             <tr className='w3-blue'>

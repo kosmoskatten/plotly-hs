@@ -3,7 +3,11 @@ import PlotSelector from './PlotSelector.jsx';
 
 export default class App extends React.Component {
   render() {
-    return <PlotSelector addPlot={this.addPlot.bind(this)}/>;
+    return (
+      <div className='w3-container w3-row'>
+        <PlotSelector addPlot={this.addPlot.bind(this)} />
+      </div>
+    );
   }
 
   // Callback from the PlotSelector with a link to the selected plot.

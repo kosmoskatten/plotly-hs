@@ -20055,7 +20055,11 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) });
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'w3-container w3-row' },
+	        _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) })
+	      );
 	    }
 
 	    // Callback from the PlotSelector with a link to the selected plot.
@@ -20126,7 +20130,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'w3-container' },
+	        { className: 'w3-container w3-col m4 l4' },
 	        _react2.default.createElement(
 	          'table',
 	          { className: 'w3-table w3-striped' },
