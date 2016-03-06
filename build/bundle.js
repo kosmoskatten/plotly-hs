@@ -20279,7 +20279,9 @@
 	        'div',
 	        { className: 'w3-container w3-col m8 l8' },
 	        this.props.plots.map(function (entry, i) {
-	          return _react2.default.createElement(_Plot2.default, { key: i, entry: entry });
+	          return _react2.default.createElement(_Plot2.default, { key: i,
+	            plotId: 'p' + i.toString(),
+	            entry: entry });
 	        })
 	      );
 	    }
@@ -20325,21 +20327,34 @@
 	  }
 
 	  _createClass(Plot, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log("mount");
+	      var data = [{
+	        values: [19, 26, 77],
+	        labels: ['beer', 'pizza', 'snacks'],
+	        type: 'pie'
+	      }];
+	      var layout = {
+	        title: 'Just a dummy chart',
+	        height: 550,
+	        width: 750
+	      };
+	      Plotly.newPlot(this.props.plotId, data, layout);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'w3-card-12 w3-margin', style: { width: 800 } },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'w3-container', style: { height: 600 } },
-	          'Hej alla barn.'
+	          'header',
+	          { className: 'w3-container w3-blue w3-right-align' },
+	          '✖'
 	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'w3-container' },
-	          'Bu hu'
-	        )
+	        _react2.default.createElement('div', { id: this.props.plotId,
+	          className: 'w3-container', style: { height: 600 } })
 	      );
 	    }
 	  }]);

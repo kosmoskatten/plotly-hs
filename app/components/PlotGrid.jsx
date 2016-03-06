@@ -14,7 +14,9 @@ export default class PlotGrid extends React.Component {
     return (
         <div className='w3-container w3-col m8 l8'>
           {this.props.plots.map((entry, i) => {
-            return <Plot key={i} entry={entry} />
+            return <Plot key={i}
+                    plotId={'p' + i.toString()}
+                    entry={entry} />
           })}
         </div>
     );
