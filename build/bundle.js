@@ -20035,6 +20035,10 @@
 
 	var _PlotSelector2 = _interopRequireDefault(_PlotSelector);
 
+	var _PlotGrid = __webpack_require__(165);
+
+	var _PlotGrid2 = _interopRequireDefault(_PlotGrid);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20058,7 +20062,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'w3-container w3-row' },
-	        _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) })
+	        _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) }),
+	        _react2.default.createElement(_PlotGrid2.default, null)
 	      );
 	    }
 
@@ -20220,6 +20225,124 @@
 	}(_react2.default.Component);
 
 	exports.default = PlotSelector;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Plot = __webpack_require__(166);
+
+	var _Plot2 = _interopRequireDefault(_Plot);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/*
+	 * The PlotGrid displays a grid of selected plots. The plots to display
+	 * are provided as a property list with url links to the plots.
+	 */
+
+	var PlotGrid = function (_React$Component) {
+	  _inherits(PlotGrid, _React$Component);
+
+	  function PlotGrid(props) {
+	    _classCallCheck(this, PlotGrid);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(PlotGrid).call(this, props));
+	  }
+
+	  _createClass(PlotGrid, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'w3-container w3-col m8 l8' },
+	        _react2.default.createElement(_Plot2.default, null),
+	        _react2.default.createElement(_Plot2.default, null)
+	      );
+	    }
+	  }]);
+
+	  return PlotGrid;
+	}(_react2.default.Component);
+
+	exports.default = PlotGrid;
+	;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Plot = function (_React$Component) {
+	  _inherits(Plot, _React$Component);
+
+	  function Plot(props) {
+	    _classCallCheck(this, Plot);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Plot).call(this, props));
+	  }
+
+	  _createClass(Plot, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'w3-card-12 w3-margin', style: { width: 800 } },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'w3-container', style: { height: 600 } },
+	          'Hej alla barn.'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'w3-container' },
+	          'Bu hu'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Plot;
+	}(_react2.default.Component);
+
+	exports.default = Plot;
 
 /***/ }
 /******/ ]);
