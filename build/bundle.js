@@ -20097,7 +20097,7 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
-	    _this.state = { plots: [] };
+	    _this.state = { plots: [], nextSeq: 1 };
 	    return _this;
 	  }
 
@@ -20108,7 +20108,8 @@
 	        'div',
 	        { className: 'w3-container w3-row' },
 	        _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) }),
-	        _react2.default.createElement(_PlotGrid2.default, { plots: this.state.plots })
+	        _react2.default.createElement(_PlotGrid2.default, { removePlot: this.removePlot.bind(this),
+	          plots: this.state.plots })
 	      );
 	    }
 
@@ -20117,8 +20118,21 @@
 	  }, {
 	    key: 'addPlot',
 	    value: function addPlot(entry) {
-	      console.log("addPlot: " + entry.link);
-	      this.setState({ plots: this.state.plots.concat([entry]) });
+	      console.log('addPlot: ' + entry.link);
+	      var newPlot = { entry: entry, seq: this.state.nextSeq };
+	      this.setState({ plots: this.state.plots.concat([newPlot]),
+	        nextSeq: this.state.nextSeq + 1 });
+	    }
+
+	    // Callback from PlotGrid with a seq number to remove a plot.
+
+	  }, {
+	    key: 'removePlot',
+	    value: function removePlot(seq) {
+	      console.log('App.removePlot: ' + seq);
+	      this.setState({ plots: this.state.plots.filter(function (plot) {
+	          return plot.seq != seq;
+	        }), nextSeq: this.state.nextSeq });
 	    }
 	  }]);
 
@@ -20322,11 +20336,10 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'w3-container w3-col m8 l8' },
-	        this.props.plots.map(function (entry, i) {
+	        this.props.plots.map(function (plot, i) {
 	          return _react2.default.createElement(_Plot2.default, { key: i,
-	            plotId: 'p' + i.toString(),
-	            onClose: _this2.onClose,
-	            entry: entry });
+	            removePlot: _this2.removePlot.bind(_this2),
+	            plot: plot });
 	        })
 	      );
 	    }
@@ -20334,9 +20347,12 @@
 	    // A plot card has requested to close.
 
 	  }, {
-	    key: 'onClose',
-	    value: function onClose(link) {
-	      console.log('PlotGrid.onClose: ' + link);
+	    key: 'removePlot',
+	    value: function removePlot(seq) {
+	      console.log('PlotGrid.removePlot: ' + seq);
+
+	      // Propagate the event to App.
+	      this.props.removePlot(seq);
 	    }
 	  }]);
 
@@ -20376,7 +20392,13 @@
 	  function Plot(props) {
 	    _classCallCheck(this, Plot);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Plot).call(this, props));
+	    // Instance variable to give a unique name for the div to host
+	    // the Plotly chart.
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Plot).call(this, props));
+
+	    _this.plotId = 'plot' + props.plot.seq.toString();
+	    return _this;
 	  }
 
 	  // Initial rendering of Plotly stuff.
@@ -20396,7 +20418,7 @@
 	        height: 550,
 	        width: 750
 	      };
-	      Plotly.newPlot(this.props.plotId, data, layout);
+	      Plotly.newPlot(this.plotId, data, layout);
 	    }
 	  }, {
 	    key: 'render',
@@ -20409,12 +20431,12 @@
 	          { className: 'w3-container w3-blue w3-right-align' },
 	          _react2.default.createElement(
 	            'span',
-	            { onClick: this.handleClose.bind(this, this.props.entry),
+	            { onClick: this.handleClose.bind(this, this.props.plot.seq),
 	              className: 'clickable' },
 	            '✖'
 	          )
 	        ),
-	        _react2.default.createElement('div', { id: this.props.plotId,
+	        _react2.default.createElement('div', { id: this.plotId,
 	          className: 'w3-container', style: { height: 600 } })
 	      );
 	    }
@@ -20423,10 +20445,10 @@
 
 	  }, {
 	    key: 'handleClose',
-	    value: function handleClose(entry) {
-	      console.log('handleClose: ' + entry.link);
+	    value: function handleClose(seq) {
+	      console.log('handleClose: ' + seq);
 	      // Propagate the event to the PlotGrid.
-	      this.props.onClose(entry.link);
+	      this.props.removePlot(seq);
 	    }
 	  }]);
 

@@ -3,6 +3,10 @@ import React from 'react';
 export default class Plot extends React.Component {
   constructor(props) {
     super(props);
+
+    // Instance variable to give a unique name for the div to host
+    // the Plotly chart.
+    this.plotId = 'plot' + props.plot.seq.toString();
   }
 
   // Initial rendering of Plotly stuff.
@@ -18,19 +22,19 @@ export default class Plot extends React.Component {
       height: 550,
       width: 750
     };
-    Plotly.newPlot(this.props.plotId, data, layout);
+    Plotly.newPlot(this.plotId, data, layout);
   }
 
   render() {
     return (
         <div className='w3-card-12 w3-margin' style={{width:800}}>
           <header className='w3-container w3-blue w3-right-align'>
-            <span onClick={this.handleClose.bind(this, this.props.entry)}
+            <span onClick={this.handleClose.bind(this, this.props.plot.seq)}
                   className="clickable">
                ✖
             </span>
           </header>
-          <div id={this.props.plotId}
+          <div id={this.plotId}
                className='w3-container' style={{height:600}}>
           </div>
         </div>
@@ -38,9 +42,9 @@ export default class Plot extends React.Component {
   }
 
   // Event handler when the 'cross' has been clicked.
-  handleClose(entry) {
-    console.log('handleClose: ' + entry.link);
+  handleClose(seq) {
+    console.log('handleClose: ' + seq);
     // Propagate the event to the PlotGrid.
-    this.props.onClose(entry.link);
+    this.props.removePlot(seq);
   }
 }
