@@ -37,7 +37,7 @@ export default class PlotSelector extends React.Component {
                   <td>{entry.type}</td>
                   <td>
                     <a className='w3-btn-floating w3-blue'
-                       onClick={this.handleAdd.bind(this, entry.link)}>+</a>
+                       onClick={this.handleAdd.bind(this, entry)}>+</a>
                   </td>
                 </tr>
               );
@@ -62,8 +62,8 @@ export default class PlotSelector extends React.Component {
   }
 
   // Handle a new link is selected for adding.
-  handleAdd(link) {
-    console.log('foo: ' + link);
-    this.props.addPlot(link);
+  handleAdd(entry) {
+    console.log("handleAdd: " + entry.link);
+    this.props.addPlot(entry);
   }
 }

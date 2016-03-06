@@ -20050,10 +20050,13 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 
-	  function App() {
+	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+	    _this.state = { plots: [] };
+	    return _this;
 	  }
 
 	  _createClass(App, [{
@@ -20063,16 +20066,17 @@
 	        'div',
 	        { className: 'w3-container w3-row' },
 	        _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) }),
-	        _react2.default.createElement(_PlotGrid2.default, null)
+	        _react2.default.createElement(_PlotGrid2.default, { plots: this.state.plots })
 	      );
 	    }
 
-	    // Callback from the PlotSelector with a link to the selected plot.
+	    // Callback from the PlotSelector with an entry to the selected plot.
 
 	  }, {
 	    key: 'addPlot',
-	    value: function addPlot(link) {
-	      console.log("Got link: " + link);
+	    value: function addPlot(entry) {
+	      console.log("addPlot: " + entry.link);
+	      this.setState({ plots: this.state.plots.concat([entry]) });
 	    }
 	  }]);
 
@@ -20185,7 +20189,7 @@
 	                  _react2.default.createElement(
 	                    'a',
 	                    { className: 'w3-btn-floating w3-blue',
-	                      onClick: _this2.handleAdd.bind(_this2, entry.link) },
+	                      onClick: _this2.handleAdd.bind(_this2, entry) },
 	                    '+'
 	                  )
 	                )
@@ -20215,9 +20219,9 @@
 
 	  }, {
 	    key: 'handleAdd',
-	    value: function handleAdd(link) {
-	      console.log('foo: ' + link);
-	      this.props.addPlot(link);
+	    value: function handleAdd(entry) {
+	      console.log("handleAdd: " + entry.link);
+	      this.props.addPlot(entry);
 	    }
 	  }]);
 
@@ -20274,8 +20278,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'w3-container w3-col m8 l8' },
-	        _react2.default.createElement(_Plot2.default, null),
-	        _react2.default.createElement(_Plot2.default, null)
+	        this.props.plots.map(function (entry, i) {
+	          return _react2.default.createElement(_Plot2.default, { key: i, entry: entry });
+	        })
 	      );
 	    }
 	  }]);
