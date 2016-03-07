@@ -30,7 +30,7 @@ data RegistryEntry = RegistryEntry
 
 -- | Plotly container record.
 data Plot = Plot
-    { data_  :: !Data
+    { data_  :: ![Data]
     , layout :: !Layout
     } deriving Show
 
@@ -45,6 +45,7 @@ data Data = Data
 data Layout = Layout
     { height :: !(Maybe Int)
     , width  :: !(Maybe Int)
+    , title  :: !Text
     } deriving Show
 
 -- | Enumeration of the supported types.
@@ -114,12 +115,14 @@ instance FromJSON Layout where
   parseJSON (Object o) =
     Layout <$> o .:? "height"
            <*> o .:? "width"
+           <*> o .: "title"
   parseJSON invalid    = typeMismatch "Layout" invalid
 
 instance ToJSON Layout where
   toJSON Layout {..} =
     object [ "height" .= height
            , "width"  .= width
+           , "title"  .= title
            ]
 
 -- Aeson instances for Type.

@@ -1,4 +1,5 @@
 import React from 'react';
+import JQuery from 'jquery';
 
 /*
  * The PlotSelector displays a list of available plots and let the user
@@ -45,7 +46,7 @@ export default class PlotSelector extends React.Component {
 
         </tbody>
         </table>
-        <button className='w3-btn-block w3-light-grey'
+        <button className='w3-btn-block w3-dark-grey'
                 onClick={this.handleUpdate.bind(this)}>Update plot list
         </button>
       </div>);
@@ -54,11 +55,15 @@ export default class PlotSelector extends React.Component {
   // Update the state with a new plot list from the server.
   handleUpdate() {
     console.log('Update clicked');
-    this.setState({plots: [
+    JQuery.getJSON('/rest/plot', data => {
+      console.log('Got something');
+      this.setState({plots: data});
+    });
+    /*this.setState({plots: [
       {description: 'Dummy plot no 1', type: 'pie', link: '/foo/123'},
       {description: 'Dummy plot no 2', type: 'pie', link: '/foo/456'},
       {description: 'Dummy plot no 3', type: 'chart', link: '/foo/789'}
-    ]});
+    ]});*/
   }
 
   // Handle a new link is selected for adding.
