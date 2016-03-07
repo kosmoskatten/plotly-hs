@@ -30249,6 +30249,15 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Plot).call(this, props));
 
 	    _this.plotId = 'plot' + props.plot.seq.toString();
+
+	    // Set the state's plot to an "empty" plot.
+	    _this.state = {
+	      data: [],
+	      layout: {
+	        height: 550,
+	        width: 750
+	      }
+	    };
 	    return _this;
 	  }
 
@@ -30259,17 +30268,18 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      console.log("mount");
-	      var data = [{
-	        values: [19, 26, 77],
-	        labels: ['beer', 'pizza', 'snacks'],
-	        type: 'pie'
-	      }];
-	      var layout = {
-	        title: 'Just a dummy chart',
-	        height: 550,
-	        width: 750
-	      };
-	      Plotly.newPlot(this.plotId, data, layout);
+	      //var data=[{
+	      //  values: [19, 26, 77],
+	      //  labels: ['beer', 'pizza', 'snacks'],
+	      //  type: 'pie'
+	      //}];
+	      //var data=[];
+	      //var layout={
+	      //title: 'Just a dummy chart',
+	      //height: 550,
+	      //width: 750
+	      //};
+	      Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
 	    }
 	  }, {
 	    key: 'render',
