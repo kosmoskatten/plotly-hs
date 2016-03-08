@@ -21,8 +21,10 @@ export default class PlotSelector extends React.Component {
     return (
       <div className='w3-container w3-col m4 l4'>
         <div className='w3-card w3-margin'>
-        <header className='w3-container w3-blue'>
-          <h3>Select your plot</h3>
+        <header className='w3-container w3-blue w3-padding w3-large'>
+          <span className='fa fa-refresh w3-right clickable'
+                onClick={this.handleUpdate.bind(this)}></span>
+          Select your plot
         </header>
 
         <table className='w3-table w3-striped'>
@@ -42,8 +44,9 @@ export default class PlotSelector extends React.Component {
                   <td>{entry.description}</td>
                   <td>{entry.type}</td>
                   <td>
-                    <a className='w3-btn-floating w3-blue'
-                       onClick={this.handleAdd.bind(this, entry)}>+</a>
+                    <span className='fa fa-user-plus clickable'
+                          onClick={this.handleAdd.bind(this, entry)}>
+                    </span>
                   </td>
                 </tr>
               );
@@ -51,9 +54,6 @@ export default class PlotSelector extends React.Component {
 
         </tbody>
         </table>
-        <button className='w3-btn-block w3-dark-grey'
-                onClick={this.handleUpdate.bind(this)}>Update plot list
-        </button>
 
         </div>
       </div>

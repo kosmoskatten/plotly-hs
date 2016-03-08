@@ -20218,12 +20218,10 @@
 	          { className: 'w3-card w3-margin' },
 	          _react2.default.createElement(
 	            'header',
-	            { className: 'w3-container w3-blue' },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Select your plot'
-	            )
+	            { className: 'w3-container w3-blue w3-padding w3-large' },
+	            _react2.default.createElement('span', { className: 'fa fa-refresh w3-right clickable',
+	              onClick: this.handleUpdate.bind(this) }),
+	            'Select your plot'
 	          ),
 	          _react2.default.createElement(
 	            'table',
@@ -20271,22 +20269,12 @@
 	                  _react2.default.createElement(
 	                    'td',
 	                    null,
-	                    _react2.default.createElement(
-	                      'a',
-	                      { className: 'w3-btn-floating w3-blue',
-	                        onClick: _this2.handleAdd.bind(_this2, entry) },
-	                      '+'
-	                    )
+	                    _react2.default.createElement('span', { className: 'fa fa-user-plus clickable',
+	                      onClick: _this2.handleAdd.bind(_this2, entry) })
 	                  )
 	                );
 	              })
 	            )
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'w3-btn-block w3-dark-grey',
-	              onClick: this.handleUpdate.bind(this) },
-	            'Update plot list'
 	          )
 	        )
 	      );
