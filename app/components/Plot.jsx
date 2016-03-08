@@ -1,4 +1,5 @@
 import React from 'react';
+import JQuery from 'jquery';
 
 export default class Plot extends React.Component {
   constructor(props) {
@@ -8,19 +9,23 @@ export default class Plot extends React.Component {
     // the Plotly chart.
     this.plotId = 'plot' + props.plot.seq.toString();
 
+    // Instance variable to hold the entry to display.
+    this.entry = props.plot.entry;
+
     // Set the state's plot to an "empty" plot.
     this.state = {
       data: [],
       layout: {
         height: 550,
-        width: 750
+        width: 750,
+        title: this.entry.description
       }
     };
   }
 
   // Initial rendering of Plotly stuff.
   componentDidMount() {
-    console.log("mount");
+    console.log('mount');
     //var data=[{
     //  values: [19, 26, 77],
     //  labels: ['beer', 'pizza', 'snacks'],
@@ -32,6 +37,19 @@ export default class Plot extends React.Component {
       //height: 550,
       //width: 750
     //};
+    Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
+    console.log('Now fetching from: ' + this.entry.link);
+    JQuery.getJSON(this.entry.link, data => {
+      console.log("Got somethingi, try update state");
+      data.layout.height = 550;
+      data.layout.width = 750;
+      this.setState(data);
+    });
+  }
+
+  // Update the Plotly stuff with new data and layout.
+  componentDidUpdate() {
+    console.log("componentDidUpdate()");
     Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
   }
 

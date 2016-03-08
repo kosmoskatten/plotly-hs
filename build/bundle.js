@@ -30229,6 +30229,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _jquery = __webpack_require__(167);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30250,12 +30254,16 @@
 
 	    _this.plotId = 'plot' + props.plot.seq.toString();
 
+	    // Instance variable to hold the entry to display.
+	    _this.entry = props.plot.entry;
+
 	    // Set the state's plot to an "empty" plot.
 	    _this.state = {
 	      data: [],
 	      layout: {
 	        height: 550,
-	        width: 750
+	        width: 750,
+	        title: _this.entry.description
 	      }
 	    };
 	    return _this;
@@ -30267,7 +30275,9 @@
 	  _createClass(Plot, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      console.log("mount");
+	      var _this2 = this;
+
+	      console.log('mount');
 	      //var data=[{
 	      //  values: [19, 26, 77],
 	      //  labels: ['beer', 'pizza', 'snacks'],
@@ -30279,6 +30289,22 @@
 	      //height: 550,
 	      //width: 750
 	      //};
+	      Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
+	      console.log('Now fetching from: ' + this.entry.link);
+	      _jquery2.default.getJSON(this.entry.link, function (data) {
+	        console.log("Got somethingi, try update state");
+	        data.layout.height = 550;
+	        data.layout.width = 750;
+	        _this2.setState(data);
+	      });
+	    }
+
+	    // Update the Plotly stuff with new data and layout.
+
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      console.log("componentDidUpdate()");
 	      Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
 	    }
 	  }, {
