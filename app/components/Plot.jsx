@@ -1,7 +1,11 @@
 import React from 'react';
 import JQuery from 'jquery';
 
+const PlotHeight = 550;
+const PlotWidth = 750;
+
 export default class Plot extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -16,8 +20,8 @@ export default class Plot extends React.Component {
     this.state = {
       data: [],
       layout: {
-        height: 550,
-        width: 750,
+        height: PlotHeight,
+        width: PlotWidth,
         title: this.entry.description
       }
     };
@@ -41,8 +45,9 @@ export default class Plot extends React.Component {
     console.log('Now fetching from: ' + this.entry.link);
     JQuery.getJSON(this.entry.link, data => {
       console.log("Got somethingi, try update state");
-      data.layout.height = 550;
-      data.layout.width = 750;
+      console.log("h: " + PlotHeight + " w: " + PlotWidth);
+      data.layout.height = PlotHeight;
+      data.layout.width = PlotWidth;
       this.setState(data);
     });
   }

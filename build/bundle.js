@@ -30241,6 +30241,9 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var PlotHeight = 550;
+	var PlotWidth = 750;
+
 	var Plot = function (_React$Component) {
 	  _inherits(Plot, _React$Component);
 
@@ -30261,8 +30264,8 @@
 	    _this.state = {
 	      data: [],
 	      layout: {
-	        height: 550,
-	        width: 750,
+	        height: PlotHeight,
+	        width: PlotWidth,
 	        title: _this.entry.description
 	      }
 	    };
@@ -30293,8 +30296,9 @@
 	      console.log('Now fetching from: ' + this.entry.link);
 	      _jquery2.default.getJSON(this.entry.link, function (data) {
 	        console.log("Got somethingi, try update state");
-	        data.layout.height = 550;
-	        data.layout.width = 750;
+	        console.log("h: " + PlotHeight + " w: " + PlotWidth);
+	        data.layout.height = PlotHeight;
+	        data.layout.width = PlotWidth;
 	        _this2.setState(data);
 	      });
 	    }
