@@ -20106,10 +20106,23 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'w3-container w3-row' },
-	        _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) }),
-	        _react2.default.createElement(_PlotGrid2.default, { removePlot: this.removePlot.bind(this),
-	          plots: this.state.plots })
+	        { className: 'w3-container' },
+	        _react2.default.createElement(
+	          'header',
+	          { className: 'w3-header w3-blue w3-center' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Plotly.hs - Live plots'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'w3-container w3-row' },
+	          _react2.default.createElement(_PlotSelector2.default, { addPlot: this.addPlot.bind(this) }),
+	          _react2.default.createElement(_PlotGrid2.default, { removePlot: this.removePlot.bind(this),
+	            plots: this.state.plots })
+	        )
 	      );
 	    }
 

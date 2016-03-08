@@ -10,10 +10,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className='w3-container w3-row'>
-        <PlotSelector addPlot={this.addPlot.bind(this)} />
-        <PlotGrid removePlot={this.removePlot.bind(this)} 
-                  plots={this.state.plots} />
+      <div className='w3-container'>
+        <header className='w3-header w3-blue w3-center'>
+          <h1>Plotly.hs - Live plots</h1>
+        </header>
+        <div className='w3-container w3-row'>
+          <PlotSelector addPlot={this.addPlot.bind(this)} />
+          <PlotGrid removePlot={this.removePlot.bind(this)} 
+                    plots={this.state.plots} />
+        </div>
       </div>
     );
   }
