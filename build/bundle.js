@@ -20214,67 +20214,80 @@
 	        'div',
 	        { className: 'w3-container w3-col m4 l4' },
 	        _react2.default.createElement(
-	          'table',
-	          { className: 'w3-table w3-striped' },
+	          'div',
+	          { className: 'w3-card w3-margin' },
 	          _react2.default.createElement(
-	            'thead',
-	            null,
+	            'header',
+	            { className: 'w3-container w3-blue' },
 	            _react2.default.createElement(
-	              'tr',
-	              { className: 'w3-blue' },
-	              _react2.default.createElement(
-	                'th',
-	                null,
-	                'Plot Description'
-	              ),
-	              _react2.default.createElement(
-	                'th',
-	                null,
-	                'Type'
-	              ),
-	              _react2.default.createElement(
-	                'th',
-	                null,
-	                'Add It!'
-	              )
+	              'h3',
+	              null,
+	              'Select your plot'
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'tbody',
-	            null,
-	            this.state.plots.map(function (entry, i) {
-	              return _react2.default.createElement(
+	            'table',
+	            { className: 'w3-table w3-striped' },
+	            _react2.default.createElement(
+	              'thead',
+	              null,
+	              _react2.default.createElement(
 	                'tr',
-	                { key: i },
+	                { className: 'w3-light-blue' },
 	                _react2.default.createElement(
-	                  'td',
+	                  'th',
 	                  null,
-	                  entry.description
+	                  'Plot Description'
 	                ),
 	                _react2.default.createElement(
-	                  'td',
+	                  'th',
 	                  null,
-	                  entry.type
+	                  'Type'
 	                ),
 	                _react2.default.createElement(
-	                  'td',
+	                  'th',
 	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { className: 'w3-btn-floating w3-blue',
-	                      onClick: _this2.handleAdd.bind(_this2, entry) },
-	                    '+'
-	                  )
+	                  'Add It!'
 	                )
-	              );
-	            })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tbody',
+	              null,
+	              this.state.plots.map(function (entry, i) {
+	                return _react2.default.createElement(
+	                  'tr',
+	                  { key: i },
+	                  _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    entry.description
+	                  ),
+	                  _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    entry.type
+	                  ),
+	                  _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { className: 'w3-btn-floating w3-blue',
+	                        onClick: _this2.handleAdd.bind(_this2, entry) },
+	                      '+'
+	                    )
+	                  )
+	                );
+	              })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'w3-btn-block w3-dark-grey',
+	              onClick: this.handleUpdate.bind(this) },
+	            'Update plot list'
 	          )
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'w3-btn-block w3-dark-grey',
-	            onClick: this.handleUpdate.bind(this) },
-	          'Update plot list'
 	        )
 	      );
 	    }

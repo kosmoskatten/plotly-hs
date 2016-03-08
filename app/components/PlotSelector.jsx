@@ -20,9 +20,14 @@ export default class PlotSelector extends React.Component {
     // Render the PlotSelector.
     return (
       <div className='w3-container w3-col m4 l4'>
+        <div className='w3-card w3-margin'>
+        <header className='w3-container w3-blue'>
+          <h3>Select your plot</h3>
+        </header>
+
         <table className='w3-table w3-striped'>
           <thead>
-            <tr className='w3-blue'>
+            <tr className='w3-light-blue'>
               <th>Plot Description</th>
               <th>Type</th>
               <th>Add It!</th>
@@ -49,7 +54,10 @@ export default class PlotSelector extends React.Component {
         <button className='w3-btn-block w3-dark-grey'
                 onClick={this.handleUpdate.bind(this)}>Update plot list
         </button>
-      </div>);
+
+        </div>
+      </div>
+      );
   }
 
   // Update the state with a new plot list from the server.
