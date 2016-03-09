@@ -9,12 +9,15 @@ import Data.UUID (toText)
 import Data.UUID.V4 (nextRandom)
 import Network.Hive
 
+import qualified Data.ByteString.Lazy.Char8 as LBS
+
 import Plotly.JSON (RegistryEntry (..), Registration (..))
 import Types ( Context (..)
              , Entry (..)
-             , listEntries
-             , createEntry
+             , listRegEntries
+             , insertNewEntry
              , readEntry
+             , updateEntry
              )
 
 server :: Context -> Hive ()
@@ -31,47 +34,50 @@ server context = do
   match GET </> "rest" </> "plot" </:> "plotKey" <!> None
         ==> readPlot context
 
-  -- Create a new plot given the specified registration details.
+  -- Create a new - empty - plot given the specified registration details.
   match POST </> "rest" </> "plot" <!> None
         ==> (createPlot context =<< bodyJSON)
+
+  -- Update a plot with new graphics data.
+  match PUT </> "rest" </> "plot" </:> "plotKey" <!> None
+        ==> (updatePlot context =<< bodyByteString)
 
   -- Fall back http case, try serving a static file.
   matchAll ==> serveDirectory (siteDir context)
 
 listPlots :: Context -> Handler HandlerResponse
 listPlots context = do
-  entries <- liftIO $ listEntries context
-  respondJSON Ok $ map toRegEntry entries
-    where
-      toRegEntry :: Entry -> RegistryEntry
-      toRegEntry Entry {..} =
-        RegistryEntry { description_regEntry = description_entry
-                      , type_regEntry        = type_entry
-                      , link                 = link_entry
-                      }
+  entries <- liftIO $ listRegEntries context
+  respondJSON Ok entries
 
 readPlot :: Context -> Handler HandlerResponse
 readPlot context = do
   plotKey    <- capture "plotKey"
   maybeEntry <- liftIO $ readEntry context plotKey
   case maybeEntry of
-    Just entry -> respondJSON Ok $ plot_entry entry
+    Just entry -> respondByteString Ok "application/json" $ plot entry
     Nothing    -> respondText NotFound "Resource not found"
 
 createPlot :: Context -> Registration -> Handler HandlerResponse
 createPlot context Registration {..} = do
   uuid <- toText <$> liftIO nextRandom
-  let entry = Entry { description_entry = description_reg
-                    , type_entry        = type_reg
-                    , link_entry        = mkLink uuid
-                    , plot_entry        = plot_reg
+  let regEntry' =
+        RegistryEntry { description_regEntry = description_reg
+                      , type_regEntry        = type_reg
+                      , link                 = mkLink uuid
+                      }
+      entry = Entry { regEntry = regEntry'
+                    , plot     = ""
                     }
-      reply = RegistryEntry { description_regEntry = description_reg
-                            , type_regEntry        = type_reg
-                            , link                 = mkLink uuid
-                            }
-  liftIO $ createEntry context uuid entry
-  respondJSON Created reply
+  liftIO $ insertNewEntry context uuid entry
+  respondJSON Created regEntry'
+
+updatePlot :: Context -> LBS.ByteString -> Handler HandlerResponse
+updatePlot context obj = do
+  plotKey <- capture "plotKey"
+  result  <- liftIO $ updateEntry context plotKey obj
+  if result then respondText Ok "Entry updated"
+            else respondText NotFound "Entry not found"
 
 mkLink :: Text -> Text
 mkLink uuid = "/rest/plot/" `mappend` uuid

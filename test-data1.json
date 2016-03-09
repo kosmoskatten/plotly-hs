@@ -1,9 +1,8 @@
-{"description": "Fruit popularity",
- "type": "pie",
- "plot": {"data": [{"type": "pie",
-                   "values": [15, 26, 88],
-                   "labels": ["banana", "apple", "orange"]
-                  }],
-          "layout": {}
-         }
+{"data": 
+  [{"type": "pie",
+    "values": [15, 26, 88],
+    "labels": ["banana", "apple", "orange"]
+   }],
+ "layout": {}
 }
+
