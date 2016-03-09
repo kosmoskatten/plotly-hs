@@ -30313,6 +30313,7 @@
 	        console.log("h: " + PlotHeight + " w: " + PlotWidth);
 	        data.layout.height = PlotHeight;
 	        data.layout.width = PlotWidth;
+	        data.layout.title = _this2.entry.description;
 	        _this2.setState(data);
 	      });
 	    }

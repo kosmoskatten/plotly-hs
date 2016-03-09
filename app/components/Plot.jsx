@@ -48,6 +48,7 @@ export default class Plot extends React.Component {
       console.log("h: " + PlotHeight + " w: " + PlotWidth);
       data.layout.height = PlotHeight;
       data.layout.width = PlotWidth;
+      data.layout.title = this.entry.description;
       this.setState(data);
     });
   }

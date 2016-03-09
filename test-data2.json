@@ -1,0 +1,18 @@
+{"description": "Fruit popularity by country",
+ "type": "bar",
+ "plot":
+ {"layout": {"barmode": "stack"},
+  "data": [
+    { "x": [23, 89, 12],
+      "y": ["Sweden", "Norway", "Denmark"],
+      "name": "Bananas",
+      "orientation": "h",
+      "type": "bar",
+      "marker":
+       {"color": "rgb(255, 0, 0)",
+        "width": 1
+       }
+    }
+  ]
+ }
+}

@@ -1,9 +1,9 @@
-{"description": "Test plot no 1. Some fruit pie chart",
+{"description": "Fruit popularity",
  "type": "pie",
  "plot": {"data": [{"type": "pie",
                    "values": [15, 26, 88],
                    "labels": ["banana", "apple", "orange"]
                   }],
-          "layout": {"title": "Test plot no 1. Some fruit pie chart"}
+          "layout": {}
          }
 }
