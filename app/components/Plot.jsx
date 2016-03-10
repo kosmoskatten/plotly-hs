@@ -51,14 +51,14 @@ export default class Plot extends React.Component {
     console.log('Now fetching from: ' + this.entry.link);
 
     // Requesting live data from server using REST.
-    JQuery.getJSON(this.entry.link, data => {
+    /*JQuery.getJSON(this.entry.link, data => {
       console.log("Got something, try update state");
       console.log("h: " + PlotHeight + " w: " + PlotWidth);
       data.layout.height = PlotHeight;
       data.layout.width = PlotWidth;
       data.layout.title = this.entry.description;
       this.setState(data);
-    });
+    });*/
 
     const wsUrl = this.mkWsEndpoint(this.entry.link);
     console.log('WebSocket url to use: ' + wsUrl);
@@ -107,6 +107,12 @@ export default class Plot extends React.Component {
 
   handleWsMessage(evt) {
     console.log('WebSocket got: ' + evt.data);
+    const obj = JSON.parse(evt.data);
+    obj.layout.height = PlotHeight;
+    obj.layout.width = PlotWidth;
+    obj.layout.title = this.entry.description;
+
+    this.setState(obj);
   }
 
   mkWsEndpoint(url) {

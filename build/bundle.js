@@ -30296,8 +30296,6 @@
 	  _createClass(Plot, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
 	      console.log('mount');
 	      //var data=[{
 	      //  values: [19, 26, 77],
@@ -30316,14 +30314,14 @@
 	      console.log('Now fetching from: ' + this.entry.link);
 
 	      // Requesting live data from server using REST.
-	      _jquery2.default.getJSON(this.entry.link, function (data) {
+	      /*JQuery.getJSON(this.entry.link, data => {
 	        console.log("Got something, try update state");
 	        console.log("h: " + PlotHeight + " w: " + PlotWidth);
 	        data.layout.height = PlotHeight;
 	        data.layout.width = PlotWidth;
-	        data.layout.title = _this2.entry.description;
-	        _this2.setState(data);
-	      });
+	        data.layout.title = this.entry.description;
+	        this.setState(data);
+	      });*/
 
 	      var wsUrl = this.mkWsEndpoint(this.entry.link);
 	      console.log('WebSocket url to use: ' + wsUrl);
@@ -30385,6 +30383,12 @@
 	    key: 'handleWsMessage',
 	    value: function handleWsMessage(evt) {
 	      console.log('WebSocket got: ' + evt.data);
+	      var obj = JSON.parse(evt.data);
+	      obj.layout.height = PlotHeight;
+	      obj.layout.width = PlotWidth;
+	      obj.layout.title = this.entry.description;
+
+	      this.setState(obj);
 	    }
 	  }, {
 	    key: 'mkWsEndpoint',

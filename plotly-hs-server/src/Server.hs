@@ -86,7 +86,6 @@ updatePlot context obj = do
   WebSocket endpoint.
 -}
 
--- TODO: Check that the entry exist, otherwise just reject.
 dataService :: Context -> Server ()
 dataService context = do
   plotKey    <- capture "plotKey"
@@ -101,7 +100,5 @@ connectedDataService :: PlotChan -> ConnectedServer ()
 connectedDataService chan = do
   forkPingThread 20
   forever $ do
-    logInfo "Waiting for channel data"
     msg <- liftIO (atomically $ readTChan chan)
-    logInfo $ "Got: " ++ show msg
     sendTextMessage msg

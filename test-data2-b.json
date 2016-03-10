@@ -1,0 +1,35 @@
+{"layout": {"barmode": "stack"},
+ "data": [
+    { "x": [23, 89, 12],
+      "y": ["Sweden", "Norway", "Denmark"],
+      "name": "Bananas",
+      "orientation": "h",
+      "type": "bar",
+      "marker":
+       {"color": "rgb(255, 0, 0)",
+        "width": 1
+       }
+    },
+    { "x": [15, 4, 99],
+      "y": ["Sweden", "Norway", "Denmark"],
+      "name": "Apples",
+      "orientation": "h",
+      "type": "bar",
+      "marker":
+      {"color": "rgb(0, 255, 0)",
+       "width": 1
+      }
+    },
+    { "x": [19, 34,9],
+      "y": ["Sweden", "Norway", "Denmark"],
+      "name": "Oranges",
+      "orientation": "h",
+      "type": "bar",
+      "marker":
+      {"color": "rgb(0, 0, 255)",
+       "width": 1
+      }
+    }
+
+  ]
+}
