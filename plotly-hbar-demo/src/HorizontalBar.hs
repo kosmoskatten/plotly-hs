@@ -1,5 +1,12 @@
-{-# LANGUAGE RecordWildCards #-}
-module HorizontalBar where
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards   #-}
+module HorizontalBar
+  ( ItemMap
+  , Plot (..)
+  , emptyItemMap
+  , addItemBin
+  , renderItems
+  ) where
 
 import Data.Aeson
 import Data.Map.Strict (Map)
