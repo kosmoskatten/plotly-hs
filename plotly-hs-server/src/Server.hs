@@ -4,18 +4,19 @@ module Server
   ( server
   ) where
 
-import Control.Concurrent (threadDelay)
+import Control.Concurrent
+import Control.Concurrent.STM (atomically)
+import Control.Concurrent.STM.TChan
 import Control.Monad (forever)
 import Data.Text (Text)
-import Data.UUID (toText)
-import Data.UUID.V4 (nextRandom)
 import Network.Hive
-
 import qualified Data.ByteString.Lazy.Char8 as LBS
 
-import Plotly.JSON (RegistryEntry (..), Registration (..))
+import Plotly.JSON (Registration (..))
 import Types ( Context (..)
              , Entry (..)
+             , PlotChan
+             , newEntry
              , listRegEntries
              , insertNewEntry
              , readEntry
@@ -49,7 +50,7 @@ server context = do
 
   -- Serve a plot as a websocket service.
   webSocket </> "rest" </> "plot" </:> "plotKey"
-            ~~> dataService
+            ~~> dataService context
 
 {-
   REST endpoints.
@@ -69,18 +70,10 @@ readPlot context = do
     Nothing    -> respondText NotFound "Resource not found"
 
 createPlot :: Context -> Registration -> Handler HandlerResponse
-createPlot context Registration {..} = do
-  uuid <- toText <$> liftIO nextRandom
-  let regEntry' =
-        RegistryEntry { description_regEntry = description_reg
-                      , type_regEntry        = type_reg
-                      , link                 = mkLink uuid
-                      }
-      entry = Entry { regEntry = regEntry'
-                    , plot     = "{\"data\":[], \"layout\":{}}"
-                    }
-  liftIO $ insertNewEntry context uuid entry
-  respondJSON Created regEntry'
+createPlot context registration = do
+  (key, entry) <- liftIO $ newEntry registration
+  liftIO $ insertNewEntry context key entry
+  respondJSON Created $ regEntry entry
 
 updatePlot :: Context -> LBS.ByteString -> Handler HandlerResponse
 updatePlot context obj = do
@@ -94,19 +87,21 @@ updatePlot context obj = do
 -}
 
 -- TODO: Check that the entry exist, otherwise just reject.
-dataService :: Server ()
-dataService = acceptRequest connectedDataService
+dataService :: Context -> Server ()
+dataService context = do
+  plotKey    <- capture "plotKey"
+  maybeEntry <- liftIO $ readEntry context plotKey
+  case maybeEntry of
+    Just entry -> do
+      chan <- liftIO $ atomically (cloneTChan $ plotChan entry)
+      acceptRequest $ connectedDataService chan
+    Nothing    -> rejectRequest "Cannot find plot"
 
-connectedDataService :: ConnectedServer ()
-connectedDataService = do
+connectedDataService :: PlotChan -> ConnectedServer ()
+connectedDataService chan = do
   forkPingThread 20
   forever $ do
-    sendTextMessage ("Hello" :: Text)
-    liftIO $ threadDelay 1000000
-
-{-
-  Helpers.
--}
-
-mkLink :: Text -> Text
-mkLink uuid = "/rest/plot/" `mappend` uuid
+    logInfo "Waiting for channel data"
+    msg <- liftIO (atomically $ readTChan chan)
+    logInfo $ "Got: " ++ show msg
+    sendTextMessage msg
