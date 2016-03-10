@@ -67,7 +67,7 @@ createPlot context Registration {..} = do
                       , link                 = mkLink uuid
                       }
       entry = Entry { regEntry = regEntry'
-                    , plot     = ""
+                    , plot     = "{\"data\":[], \"layout\":{}}"
                     }
   liftIO $ insertNewEntry context uuid entry
   respondJSON Created regEntry'

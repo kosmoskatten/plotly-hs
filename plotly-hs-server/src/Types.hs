@@ -13,8 +13,10 @@ module Types
 import Control.Concurrent.STM ( TVar
                               , atomically
                               , newTVarIO
+                              , readTVar
                               , readTVarIO
                               , modifyTVar
+                              , writeTVar
                               )
 import Data.Map.Lazy (Map)
 import Data.Text (Text)
@@ -58,4 +60,12 @@ readEntry context plotKey = do
   return $ Map.lookup plotKey plotMap'
 
 updateEntry :: Context -> PlotKey -> LBS.ByteString -> IO Bool
-updateEntry = undefined
+updateEntry context plotKey body =
+  atomically $ do
+    plotMap' <- readTVar (plotMap context)
+    case Map.lookup plotKey plotMap' of
+      Just entry -> do
+        let entry' = entry { plot = body }
+        writeTVar (plotMap context) $ Map.insert plotKey entry' plotMap'
+        return True
+      Nothing -> return False

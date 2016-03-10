@@ -25,7 +25,9 @@ data RegistryEntry = RegistryEntry
     } deriving Show
 
 -- | Enumeration of the supported types.
-data Type = Pie
+data Type
+    = Pie
+    | Bar
     deriving Show
 
 -- Aeson instances for Registration.
@@ -59,7 +61,9 @@ instance ToJSON RegistryEntry where
 -- Aeson instances for Type.
 instance FromJSON Type where
   parseJSON (String "pie") = return Pie
+  parseJSON (String "bar") = return Bar
   parseJSON invalid        = typeMismatch "Type" invalid
 
 instance ToJSON Type where
   toJSON Pie = String "pie"
+  toJSON Bar = String "bar"
