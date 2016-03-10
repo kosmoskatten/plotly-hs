@@ -30274,6 +30274,10 @@
 	    // Instance variable to hold the entry to display.
 	    _this.entry = props.plot.entry;
 
+	    // Instance variable to hold websocket. Shall be created in
+	    // componentDidMount?
+	    _this.ws = null;
+
 	    // Set the state's plot to an "empty" plot.
 	    _this.state = {
 	      data: [],
@@ -30306,16 +30310,27 @@
 	      //height: 550,
 	      //width: 750
 	      //};
+
+	      // Render the initial plot using default data.
 	      Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
 	      console.log('Now fetching from: ' + this.entry.link);
+
+	      // Requesting live data from server using REST.
 	      _jquery2.default.getJSON(this.entry.link, function (data) {
-	        console.log("Got somethingi, try update state");
+	        console.log("Got something, try update state");
 	        console.log("h: " + PlotHeight + " w: " + PlotWidth);
 	        data.layout.height = PlotHeight;
 	        data.layout.width = PlotWidth;
 	        data.layout.title = _this2.entry.description;
 	        _this2.setState(data);
 	      });
+
+	      var wsUrl = this.mkWsEndpoint(this.entry.link);
+	      console.log('WebSocket url to use: ' + wsUrl);
+	      this.ws = new WebSocket(wsUrl);
+	      this.ws.onopen = this.handleWsOpen;
+	      this.ws.onclose = this.handleWsClose;
+	      this.ws.onmessage = this.handleWsMessage.bind(this);
 	    }
 
 	    // Update the Plotly stuff with new data and layout.
@@ -30355,6 +30370,26 @@
 	      console.log('handleClose: ' + seq);
 	      // Propagate the event to the PlotGrid.
 	      this.props.removePlot(seq);
+	    }
+	  }, {
+	    key: 'handleWsOpen',
+	    value: function handleWsOpen() {
+	      console.log('WebSocket did open');
+	    }
+	  }, {
+	    key: 'handleWsClose',
+	    value: function handleWsClose() {
+	      console.log('WebSocket did close');
+	    }
+	  }, {
+	    key: 'handleWsMessage',
+	    value: function handleWsMessage(evt) {
+	      console.log('WebSocket got: ' + evt.data);
+	    }
+	  }, {
+	    key: 'mkWsEndpoint',
+	    value: function mkWsEndpoint(url) {
+	      return 'ws://localhost:8888' + url;
 	    }
 	  }]);
 

@@ -4,6 +4,8 @@ module Server
   ( server
   ) where
 
+import Control.Concurrent (threadDelay)
+import Control.Monad (forever)
 import Data.Text (Text)
 import Data.UUID (toText)
 import Data.UUID.V4 (nextRandom)
@@ -45,6 +47,14 @@ server context = do
   -- Fall back http case, try serving a static file.
   matchAll ==> serveDirectory (siteDir context)
 
+  -- Serve a plot as a websocket service.
+  webSocket </> "rest" </> "plot" </:> "plotKey"
+            ~~> dataService
+
+{-
+  REST endpoints.
+-}
+
 listPlots :: Context -> Handler HandlerResponse
 listPlots context = do
   entries <- liftIO $ listRegEntries context
@@ -78,6 +88,25 @@ updatePlot context obj = do
   result  <- liftIO $ updateEntry context plotKey obj
   if result then respondText Ok "Entry updated"
             else respondText NotFound "Entry not found"
+
+{-
+  WebSocket endpoint.
+-}
+
+-- TODO: Check that the entry exist, otherwise just reject.
+dataService :: Server ()
+dataService = acceptRequest connectedDataService
+
+connectedDataService :: ConnectedServer ()
+connectedDataService = do
+  forkPingThread 20
+  forever $ do
+    sendTextMessage ("Hello" :: Text)
+    liftIO $ threadDelay 1000000
+
+{-
+  Helpers.
+-}
 
 mkLink :: Text -> Text
 mkLink uuid = "/rest/plot/" `mappend` uuid

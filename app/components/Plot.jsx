@@ -16,6 +16,10 @@ export default class Plot extends React.Component {
     // Instance variable to hold the entry to display.
     this.entry = props.plot.entry;
 
+    // Instance variable to hold websocket. Shall be created in
+    // componentDidMount?
+    this.ws = null;
+
     // Set the state's plot to an "empty" plot.
     this.state = {
       data: [],
@@ -41,16 +45,27 @@ export default class Plot extends React.Component {
       //height: 550,
       //width: 750
     //};
+
+    // Render the initial plot using default data.
     Plotly.newPlot(this.plotId, this.state.data, this.state.layout);
     console.log('Now fetching from: ' + this.entry.link);
+
+    // Requesting live data from server using REST.
     JQuery.getJSON(this.entry.link, data => {
-      console.log("Got somethingi, try update state");
+      console.log("Got something, try update state");
       console.log("h: " + PlotHeight + " w: " + PlotWidth);
       data.layout.height = PlotHeight;
       data.layout.width = PlotWidth;
       data.layout.title = this.entry.description;
       this.setState(data);
     });
+
+    const wsUrl = this.mkWsEndpoint(this.entry.link);
+    console.log('WebSocket url to use: ' + wsUrl);
+    this.ws = new WebSocket(wsUrl);
+    this.ws.onopen = this.handleWsOpen;
+    this.ws.onclose = this.handleWsClose;
+    this.ws.onmessage = this.handleWsMessage.bind(this);
   }
 
   // Update the Plotly stuff with new data and layout.
@@ -80,5 +95,21 @@ export default class Plot extends React.Component {
     console.log('handleClose: ' + seq);
     // Propagate the event to the PlotGrid.
     this.props.removePlot(seq);
+  }
+
+  handleWsOpen() {
+    console.log('WebSocket did open');
+  }
+
+  handleWsClose() {
+    console.log('WebSocket did close');
+  }
+
+  handleWsMessage(evt) {
+    console.log('WebSocket got: ' + evt.data);
+  }
+
+  mkWsEndpoint(url) {
+    return 'ws://localhost:8888' + url;
   }
 }
