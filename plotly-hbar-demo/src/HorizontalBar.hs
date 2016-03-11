@@ -89,9 +89,11 @@ plottify :: ItemMap -> Plot
 plottify = Plot . renderItems
 
 randomColor :: IO Color
-randomColor = RGB <$> rc <*> rc <*> rc
+randomColor = RGB <$> r <*> g <*> b
   where
-    rc = randomRIO (0, 255)
+    r = randomRIO (0, 255)
+    g = randomRIO (0, 255)
+    b = randomRIO (0, 255)
 
 {-
   JSON serializers.
@@ -115,7 +117,7 @@ instance ToJSON Marker where
 
 instance ToJSON Color where
   toJSON (RGB r g b) =
-    let c = printf "rgb(%d, %d, %d)" r g b
+    let c = printf "rgba(%d, %d, %d, 0.4)" r g b
     in String (Text.pack c)
 
 instance ToJSON Orientation where
