@@ -17,6 +17,7 @@ data Context = Context
     { itemMap  :: !ItemMap
     , regEntry :: !RegistryEntry
     , theHost  :: !String
+    , newColor :: IO Color
     }
 
 -- | Run a new Horizontal bar data producing application. Will create a
@@ -28,10 +29,12 @@ runHBar host descr act = do
         , type_reg        = Bar
         }
   entry <- fromJust <$> createPlot host reg
+  nc    <- mkColorSelector
   let context = Context
         { itemMap  = emptyItemMap
         , regEntry = entry
         , theHost  = host
+        , newColor = nc
         }
   evalStateT (extrState act) context
 
@@ -44,6 +47,8 @@ commit = do
 addItemWithCategory :: Text -> Text -> Float -> HBar ()
 addItemWithCategory item category value = do
   context <- get
-  im      <- liftIO $ addItemBin item category value (itemMap context)
+  im      <- liftIO $ addItemBin item category value
+                             (newColor context)
+                             (itemMap context)
   put $ context { itemMap = im }
 

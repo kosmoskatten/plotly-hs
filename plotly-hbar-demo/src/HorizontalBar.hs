@@ -2,15 +2,18 @@
 {-# LANGUAGE RecordWildCards   #-}
 module HorizontalBar
   ( ItemMap
+  , Color
   , Plot (..)
   , emptyItemMap
   , addItemBin
   , renderItems
   , plottify
+  , mkColorSelector
   ) where
 
 import Data.Aeson
 import Data.Map.Strict (Map)
+import Data.IORef
 import Data.Text (Text)
 import System.Random (randomRIO)
 import Text.Printf (printf)
@@ -57,13 +60,14 @@ data Plot = Plot { data_ :: ![Item]}
 emptyItemMap :: ItemMap
 emptyItemMap = Map.empty
 
-addItemBin :: ItemLabel -> BinLabel -> Float -> ItemMap -> IO ItemMap
-addItemBin iLabel bLabel value iMap =
+addItemBin :: ItemLabel -> BinLabel -> Float -> IO Color -> ItemMap
+           -> IO ItemMap
+addItemBin iLabel bLabel value newColor iMap =
   case Map.lookup iLabel iMap of
     Just (c, m)  ->
       return $ Map.insert iLabel (c, (addBinValue bLabel value m)) iMap
     Nothing      -> do
-      c <- randomColor
+      c <- newColor
       return $ Map.insert iLabel
                      (c, (addBinValue bLabel value Map.empty)) iMap
 
@@ -88,12 +92,45 @@ renderItem (label, (c, bMap)) =
 plottify :: ItemMap -> Plot
 plottify = Plot . renderItems
 
+mkColorSelector :: IO (IO Color)
+mkColorSelector = do
+  cRef <- newIORef colors
+  return $ selectColor cRef
+
 randomColor :: IO Color
 randomColor = RGB <$> r <*> g <*> b
   where
     r = randomRIO (0, 255)
     g = randomRIO (0, 255)
     b = randomRIO (0, 255)
+
+selectColor :: IORef [Color] -> IO Color
+selectColor cRef = do
+  xs <- readIORef cRef
+  if null xs then randomColor
+             else do
+               let y:ys = xs
+               writeIORef cRef ys
+               return y
+
+colors :: [Color]
+colors = [ {-RGB 255 0 0
+         , RGB 255 127 0
+         , RGB 255 255 0
+         , RGB 0 255 0
+         , RGB 0 0 255
+         , RGB 75 0 130
+         , RGB 143 0 255-}
+
+           RGB 164 0 0
+         , RGB 143 89 2
+         , RGB 78 154 6
+         , RGB 32 74 135
+         , RGB 196 160 0
+         , RGB 206 92 0
+         , RGB 92 53 102
+         , RGB 46 52 0
+         ]
 
 {-
   JSON serializers.
@@ -117,7 +154,7 @@ instance ToJSON Marker where
 
 instance ToJSON Color where
   toJSON (RGB r g b) =
-    let c = printf "rgba(%d, %d, %d, 0.4)" r g b
+    let c = printf "rgba(%d, %d, %d, 0.7)" r g b
     in String (Text.pack c)
 
 instance ToJSON Orientation where
