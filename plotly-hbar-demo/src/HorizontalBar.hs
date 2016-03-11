@@ -6,6 +6,7 @@ module HorizontalBar
   , emptyItemMap
   , addItemBin
   , renderItems
+  , plottify
   ) where
 
 import Data.Aeson
@@ -80,6 +81,9 @@ renderItem (label, (c, bMap)) =
                                 , width = 1
                                 }
          }
+
+plottify :: ItemMap -> Plot
+plottify = Plot . renderItems
 
 randomColor :: IO Color
 randomColor = RGB <$> rc <*> rc <*> rc
