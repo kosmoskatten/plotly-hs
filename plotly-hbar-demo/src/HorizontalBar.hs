@@ -45,6 +45,9 @@ data Marker = Marker
 data Orientation = Horizontal
     deriving Show
 
+data Barmode = Stack
+    deriving Show
+
 data Color = RGB !Int !Int !Int
     deriving Show
 
@@ -118,8 +121,11 @@ instance ToJSON Color where
 instance ToJSON Orientation where
   toJSON Horizontal = String "h"
 
+instance ToJSON Barmode where
+  toJSON Stack = String "stack"
+
 instance ToJSON Plot where
   toJSON Plot {..} =
     object [ "data"   .= data_
-           , "layout" .= object[]
+           , "layout" .= object["barmode" .= Stack]
            ]
